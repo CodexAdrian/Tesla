@@ -1,14 +1,16 @@
 package net.darkhax.tesla.api;
 
+/**
+ * Interface for objects that consume Tesla power. Consumer should only ever be null if the
+ * object is not capable of receiving power, like if the face is disabled on a Tesla block.
+ * It should, however, never be null if the object is capable of receiving power but is not
+ * currently receiving any or is full.
+ */
 public interface ITeslaConsumer {
 
     /**
-     * Offers power to the Tesla Consumer.
-     *
-     * @param power The amount of power to offer.
-     * @param simulated Whether or not this is being called as part of a simulation.
-     *        Simulations are used to get information without affecting the Tesla Producer.
-     * @return The amount of power that the consumer accepts.
+     * Determines if the consumer can accept power.
+     * @return Whether the consumer can accept power.
      */
-    long givePower (long power, boolean simulated);
+    boolean acceptsPower();
 }

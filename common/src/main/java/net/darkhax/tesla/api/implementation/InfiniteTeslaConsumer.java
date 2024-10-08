@@ -6,10 +6,10 @@ import net.darkhax.tesla.api.ITeslaConsumer;
  * Logic for a Tesla Consumer that will consume infinite amounts of power.
  */
 public class InfiniteTeslaConsumer implements ITeslaConsumer {
+    public static final InfiniteTeslaConsumer INSTANCE = new InfiniteTeslaConsumer();
 
     @Override
-    public long givePower (long power, boolean simulated) {
-
-        return power;
+    public boolean acceptsPower() {
+        return true;
     }
 }

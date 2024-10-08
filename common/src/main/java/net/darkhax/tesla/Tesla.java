@@ -1,37 +1,35 @@
 package net.darkhax.tesla;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import earth.terrarium.common_storage_lib.lookup.BlockLookup;
+import earth.terrarium.common_storage_lib.lookup.EntityLookup;
+import earth.terrarium.common_storage_lib.lookup.ItemLookup;
 import net.darkhax.tesla.api.ITeslaConsumer;
-import net.darkhax.tesla.api.ITeslaHolder;
+import net.darkhax.tesla.api.ITeslaTicker;
 import net.darkhax.tesla.api.ITeslaProducer;
-import net.darkhax.tesla.api.implementation.BaseTeslaContainer;
-import net.darkhax.tesla.capability.TeslaCapabilities.CapabilityTeslaConsumer;
-import net.darkhax.tesla.capability.TeslaCapabilities.CapabilityTeslaHolder;
-import net.darkhax.tesla.capability.TeslaCapabilities.CapabilityTeslaProducer;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 
-@Mod(modid = "tesla", name = "Tesla", version = "@VERSION@", certificateFingerprint = "@FINGERPRINT@")
 public class Tesla {
+    public static final String MOD_ID = "tesla";
 
-    private static final Logger LOG = LogManager.getLogger("Tesla");
-    
-    @EventHandler
-    public void preInit (FMLPreInitializationEvent event) {
-
-        CapabilityManager.INSTANCE.register(ITeslaConsumer.class, new CapabilityTeslaConsumer<>(), BaseTeslaContainer.class);
-        CapabilityManager.INSTANCE.register(ITeslaProducer.class, new CapabilityTeslaProducer<>(), BaseTeslaContainer.class);
-        CapabilityManager.INSTANCE.register(ITeslaHolder.class, new CapabilityTeslaHolder<>(), BaseTeslaContainer.class);
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
-    
-    @EventHandler
-    public void onFingerprintViolation (FMLFingerprintViolationEvent event) {
 
-        LOG.error("Invalid fingerprint detected! The file " + event.getSource().getName() + " may have been tampered with. This version will NOT be supported by the author!");
+    public static class Consumers {
+        public static final ItemLookup<ITeslaConsumer, Void> ITEM = ItemLookup.create(id("consumer_item"), ITeslaConsumer.class, Void.class);
+        public static final BlockLookup<ITeslaConsumer, Direction> BLOCK = BlockLookup.create(id("consumer_block"), ITeslaConsumer.class, Direction.class);
+        public static final EntityLookup<ITeslaConsumer, Direction> ENTITY = EntityLookup.create(id("consumer_entity"), ITeslaConsumer.class, Direction.class);
+    }
+
+    public static class Producers {
+        public static final ItemLookup<ITeslaProducer, Void> ITEM = ItemLookup.create(id("producer_item"), ITeslaProducer.class, Void.class);
+        public static final BlockLookup<ITeslaProducer, Direction> BLOCK = BlockLookup.create(id("producer_block"), ITeslaProducer.class, Direction.class);
+        public static final EntityLookup<ITeslaProducer, Direction> ENTITY = EntityLookup.create(id("producer_entity"), ITeslaProducer.class, Direction.class);
+    }
+
+    public static class Tickers {
+        public static final ItemLookup<ITeslaTicker, Void> ITEM = ItemLookup.create(id("ticker_item"), ITeslaTicker.class, Void.class);
     }
 }

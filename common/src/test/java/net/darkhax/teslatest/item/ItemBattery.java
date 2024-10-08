@@ -2,8 +2,6 @@ package net.darkhax.teslatest.item;
 
 import java.util.List;
 
-import net.darkhax.tesla.api.implementation.BaseTeslaContainer;
-import net.darkhax.tesla.api.implementation.BaseTeslaContainerProvider;
 import net.darkhax.tesla.lib.TeslaUtils;
 import net.darkhax.teslatest.TeslaTest;
 import net.minecraft.client.util.ITooltipFlag;

@@ -1,6 +1,5 @@
 package net.darkhax.teslatest.block;
 
-import net.darkhax.tesla.api.ITeslaHolder;
 import net.darkhax.tesla.capability.TeslaCapabilities;
 import net.darkhax.teslatest.TeslaTest;
 import net.darkhax.teslatest.TextUtils;

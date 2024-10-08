@@ -2,7 +2,6 @@ package net.darkhax.teslatest.item;
 
 import java.util.List;
 
-import net.darkhax.tesla.api.implementation.InfiniteTeslaProducerProvider;
 import net.darkhax.teslatest.TeslaTest;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
